@@ -1,0 +1,47 @@
+# Node.js
+node_modules/
+dist/
+build/
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.venv
+pip-wheel-metadata/
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/wrapper/maven-wrapper.jar
+**/mvnw
+**/mvnw.cmd
+.settings/
+.project
+.classpath
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+docs/images/*.png
+!docs/images/dashboard.png
+!docs/images/workouts.png
+!docs/images/nutrition.png
+!docs/images/bio_metrics.png
+!docs/images/performance.png
+!docs/images/profile.png
+!docs/images/login.png

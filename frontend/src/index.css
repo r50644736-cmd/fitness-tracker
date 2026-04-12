@@ -1,0 +1,27 @@
+body {
+    min-height: max(884px, 100dvh);
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.text-glow-primary {
+    text-shadow: 0 0 12px rgba(243, 255, 202, 0.4);
+}
+
+.bg-cyber-gradient {
+    background: linear-gradient(135deg, #f3ffca 0%, #cafd00 100%);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0e0e0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #262627;
+}
