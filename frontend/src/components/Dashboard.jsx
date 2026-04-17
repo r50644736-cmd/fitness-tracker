@@ -120,10 +120,17 @@ export default function Dashboard() {
   const username = data?.username || 'USER_01';
   const weeklyData = data?.weeklyData || [];
 
+  const getRecoveryStatus = (pct) => {
+    if (pct > 80) return { status: 'Fully Recharged', color: 'text-tertiary', statusColor: 'text-on-surface-variant', icon: 'check_circle' };
+    if (pct > 50) return { status: 'Recovering', color: 'text-primary', statusColor: 'text-on-surface-variant', icon: null };
+    return { status: 'Action Required', color: 'text-secondary', statusColor: 'text-error', icon: 'warning' };
+  };
+
+  const muscleRecovery = data?.muscleRecovery || { chest: 100, legs: 100, back: 100 };
   const muscleGroups = [
-    { name: 'CHEST', pct: 82, status: 'Optimized Recovery', color: 'text-primary', statusColor: 'text-on-surface-variant', icon: null },
-    { name: 'LEGS', pct: 45, status: 'Action Required', color: 'text-secondary', statusColor: 'text-error', icon: 'warning' },
-    { name: 'BACK', pct: 98, status: 'Fully Recharged', color: 'text-tertiary', statusColor: 'text-on-surface-variant', icon: 'check_circle' },
+    { name: 'CHEST', pct: muscleRecovery.chest, ...getRecoveryStatus(muscleRecovery.chest) },
+    { name: 'LEGS', pct: muscleRecovery.legs, ...getRecoveryStatus(muscleRecovery.legs) },
+    { name: 'BACK', pct: muscleRecovery.back, ...getRecoveryStatus(muscleRecovery.back) },
   ];
 
   if (loading) return (

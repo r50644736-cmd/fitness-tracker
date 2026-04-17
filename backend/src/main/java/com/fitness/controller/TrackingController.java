@@ -224,6 +224,17 @@ public class TrackingController {
             readiness = 20 + sleepScore + hrvScore + streakScore;
         }
 
+        // Muscle recovery estimation (100% means fully recovered)
+        LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
+        List<WorkoutLog> recentWorkouts = allWorkouts.stream()
+            .filter(w -> w.getDate() != null && !w.getDate().isBefore(threeDaysAgo))
+            .collect(Collectors.toList());
+
+        Map<String, Integer> muscleRecovery = new HashMap<>();
+        muscleRecovery.put("chest", Math.max(0, 100 - countTypeIntensity(recentWorkouts, "push")));
+        muscleRecovery.put("back", Math.max(0, 100 - countTypeIntensity(recentWorkouts, "pull")));
+        muscleRecovery.put("legs", Math.max(0, 100 - countTypeIntensity(recentWorkouts, "legs")));
+
         Map<String, Object> stats = new HashMap<>();
         stats.put("username", user.getUsername());
         stats.put("workouts", allWorkouts.subList(0, Math.min(5, allWorkouts.size())));
@@ -242,6 +253,7 @@ public class TrackingController {
         stats.put("latestSleep", latestSleep.orElse(null));
         stats.put("todayHydration", todayHydration.orElse(null));
         stats.put("totalWorkouts", allWorkouts.size());
+        stats.put("muscleRecovery", muscleRecovery);
 
         return ResponseEntity.ok(stats);
     }

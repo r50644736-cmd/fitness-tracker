@@ -84,6 +84,15 @@ npm run dev
 
 The application will be accessible at `http://localhost:5173`.
 
+### 🐳 Run with Docker (Recommended)
+You can easily spin up the entire ecosystem using Docker Compose:
+```bash
+docker-compose up --build -d
+```
+- **Frontend App**: http://localhost:5173
+- **Backend API**: http://localhost:8080/api (Swagger: /swagger-ui/index.html)
+- **ML Service**: http://localhost:8000 (Docs: /docs)
+
 ---
 
 ## 🔐 System Authorization
